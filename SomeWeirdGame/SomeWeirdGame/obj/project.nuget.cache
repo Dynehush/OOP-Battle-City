@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "3ifhC1I/hR4=",
+  "success": true,
+  "projectFilePath": "C:\\Uni 2 semester\\OOP\\projects\\SomeWeirdGame\\SomeWeirdGame\\SomeWeirdGame.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\batsu\\.nuget\\packages\\microsoft.win32.systemevents\\9.0.2\\microsoft.win32.systemevents.9.0.2.nupkg.sha512",
+    "C:\\Users\\batsu\\.nuget\\packages\\system.drawing.common\\9.0.2\\system.drawing.common.9.0.2.nupkg.sha512"
+  ],
+  "logs": []
+}
