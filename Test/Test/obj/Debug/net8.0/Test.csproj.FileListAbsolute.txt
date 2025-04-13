@@ -1,0 +1,14 @@
+C:\Uni 2 semester\OOP\projects\Test\Test\bin\Debug\net8.0\Test.exe
+C:\Uni 2 semester\OOP\projects\Test\Test\bin\Debug\net8.0\Test.deps.json
+C:\Uni 2 semester\OOP\projects\Test\Test\bin\Debug\net8.0\Test.runtimeconfig.json
+C:\Uni 2 semester\OOP\projects\Test\Test\bin\Debug\net8.0\Test.dll
+C:\Uni 2 semester\OOP\projects\Test\Test\bin\Debug\net8.0\Test.pdb
+C:\Uni 2 semester\OOP\projects\Test\Test\obj\Debug\net8.0\Test.GeneratedMSBuildEditorConfig.editorconfig
+C:\Uni 2 semester\OOP\projects\Test\Test\obj\Debug\net8.0\Test.AssemblyInfoInputs.cache
+C:\Uni 2 semester\OOP\projects\Test\Test\obj\Debug\net8.0\Test.AssemblyInfo.cs
+C:\Uni 2 semester\OOP\projects\Test\Test\obj\Debug\net8.0\Test.csproj.CoreCompileInputs.cache
+C:\Uni 2 semester\OOP\projects\Test\Test\obj\Debug\net8.0\Test.dll
+C:\Uni 2 semester\OOP\projects\Test\Test\obj\Debug\net8.0\refint\Test.dll
+C:\Uni 2 semester\OOP\projects\Test\Test\obj\Debug\net8.0\Test.pdb
+C:\Uni 2 semester\OOP\projects\Test\Test\obj\Debug\net8.0\Test.genruntimeconfig.cache
+C:\Uni 2 semester\OOP\projects\Test\Test\obj\Debug\net8.0\ref\Test.dll
