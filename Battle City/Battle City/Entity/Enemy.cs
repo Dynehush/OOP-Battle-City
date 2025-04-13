@@ -13,13 +13,14 @@ namespace SomeWeirdGame
         private static int _x = Field.WIDTH - 4;
         private static int _y = Field.HEIGHT - 4;
         private static readonly string _enemyFigure = "🚀";
-        private readonly string _bulletFigure = "•";
+        public static readonly string _enemyBullet = "•";
+
         public List<Bullet> Bullets { get; } = new List<Bullet>();
 
         public new int X
         {
             get => _x;
-            private set
+            set
             {
                 if (value >= 0 && value < Field.WIDTH)
                 {
@@ -35,7 +36,7 @@ namespace SomeWeirdGame
         public new int Y
         {
             get => _y;
-            private set
+            set
             {
                 if (value >= 0 && value < Field.HEIGHT)
                 {
@@ -63,8 +64,14 @@ namespace SomeWeirdGame
 
         public override void Display() { Console.Write(_enemyFigure); }
 
+
+        public int OldX { get; private set; }
+        public int OldY { get; private set; }
         public void Move(Field _field, Player _player)
         {
+            OldX = X;
+            OldY = Y;
+
             int possibility = Game.Random.Next(0, 2);
             if (possibility == 1)
             {
@@ -154,7 +161,8 @@ namespace SomeWeirdGame
                 var newX = node.Item1 + direction.Item1;
                 var newY = node.Item2 + direction.Item2;
 
-                if (newX >= 0 && newX < Field.WIDTH && newY >= 0 && newY < Field.HEIGHT && field.IsWalkable(newX, newY))
+                if (newX >= 0 && newX < Field.WIDTH && newY >= 0 && newY < Field.HEIGHT && field.IsWalkable(newX, newY) 
+                    && field.FieldGrid[newX, newY].Symbol != Reward.RewardSign)
                 {
                     neighbors.Add(Tuple.Create(newX, newY));
                 }
@@ -181,35 +189,35 @@ namespace SomeWeirdGame
             {
                 if (_player.X < _enemy.X && _player.Y < _enemy.Y)
                 {
-                    Bullets.Add(new Bullet(X, Y, -1, -1, _bulletFigure));
+                    Bullets.Add(new Bullet(X, Y, -1, -1, _enemyBullet));
                 }
                 else if (_player.X > _enemy.X && _player.Y < _enemy.Y)
                 {
-                    Bullets.Add(new Bullet(X, Y, 1, -1, _bulletFigure));
+                    Bullets.Add(new Bullet(X, Y, 1, -1, _enemyBullet));
                 }
                 else if (_player.X < _enemy.X && _player.Y > _enemy.Y)
                 {
-                    Bullets.Add(new Bullet(X, Y, -1, 1, _bulletFigure));
+                    Bullets.Add(new Bullet(X, Y, -1, 1, _enemyBullet));
                 }
                 else if (_player.X > _enemy.X && _player.Y > _enemy.Y)
                 {
-                    Bullets.Add(new Bullet(X, Y, 1, 1, _bulletFigure));
+                    Bullets.Add(new Bullet(X, Y, 1, 1, _enemyBullet));
                 }
                 else if (_player.X < _enemy.X && _player.Y == _enemy.Y)
                 {
-                    Bullets.Add(new Bullet(X, Y, -1, 0, _bulletFigure));
+                    Bullets.Add(new Bullet(X, Y, -1, 0, _enemyBullet));
                 }
                 else if (_player.X > _enemy.X && _player.Y == _enemy.Y)
                 {
-                    Bullets.Add(new Bullet(X, Y, 1, 0, _bulletFigure));
+                    Bullets.Add(new Bullet(X, Y, 1, 0, _enemyBullet));
                 }
                 else if (_player.X == _enemy.X && _player.Y > _enemy.Y)
                 {
-                    Bullets.Add(new Bullet(X, Y, 0, 1, _bulletFigure));
+                    Bullets.Add(new Bullet(X, Y, 0, 1, _enemyBullet));
                 }
                 else if (_player.X == _enemy.X && _player.Y < _enemy.Y)
                 {
-                    Bullets.Add(new Bullet(X, Y, 0, -1, _bulletFigure));
+                    Bullets.Add(new Bullet(X, Y, 0, -1, _enemyBullet));
                 }
             } else {return;}
         }

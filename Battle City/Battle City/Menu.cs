@@ -6,12 +6,16 @@ using System.Threading.Tasks;
 
 namespace SomeWeirdGame
 {
-    class Menu : Game
+    class Menu
     {
-        public static string IntroductionText = "=== Welcome to The BattleCity! ===\n\n" +
-            "---> Press Enter to start a new game.\n\n" +
-            "---> Type 'h' for the instructions.\n\n" +
-            "---> Press 'Esc' to exit.";
+        public static string IntroductionText =
+            "╔══════════════════════════════════════════╗\n" +
+            "║    === Welcome to The BattleCity! ===    ║\n" +
+            "╠══════════════════════════════════════════╣\n" +
+            "║ ---> Press 'Enter' to start a new game.  ║\n" +
+            "║ ---> Press 'h' for the instructions.     ║\n" +
+            "║ ---> Press 'Esc' to exit.                ║\n" +
+            "╚══════════════════════════════════════════╝";
 
         public static void ShowMenu()
         {
@@ -20,20 +24,20 @@ namespace SomeWeirdGame
 
             while (true)
             {
-                ConsoleKeyInfo key = Console.ReadKey(true);
-                if (key.Key == ConsoleKey.Enter)
+                var key = Console.ReadKey(true).Key;
+                switch (key)
                 {
-                    GameState = State.Run;
-                    break;
-                }
-                else if (key.Key == ConsoleKey.H)
-                {
-                    ShowInstructions();
-                }
-                else if (key.Key == ConsoleKey.Escape)
-                {
-                    GameState = State.Defeat;
-                    break;
+                    case ConsoleKey.Enter:
+                        Game.GameState = Game.State.Run;
+                        return;
+                    case ConsoleKey.H:
+                        ShowInstructions();
+                        break;
+                    case ConsoleKey.Escape:
+                        Environment.Exit(0);
+                        break;
+                    default:
+                        continue;
                 }
             }
         }
@@ -41,36 +45,59 @@ namespace SomeWeirdGame
         public static void ShowInstructions()
         {
             Console.Clear();
-            Console.WriteLine("=== Instructions ===\n\n" +
-                "Use the arrow keys to move the player.\n\n" +
-                "Collect all the stars to win.\n\n" +
-                "Avoid enemy bullets.\n\n" +
-                "Press 'Space' to shoot.\n\n" +
-                "Press 'Esc' to exit the game.\n\n" +
-                "Good luck!");
+            Console.WriteLine(
+                "╔══════════════════════════════════════════╗\n" +
+                "║            === Instructions ===          ║\n" +
+                "╠══════════════════════════════════════════╣\n" +
+                "║ Use the arrow keys to move the player.   ║\n" +
+                "║ Collect all the stars to win.            ║\n" +
+                "║ Avoid enemy bullets.                     ║\n" +
+                "║ Press 'Space' to shoot.                  ║\n" +
+                "║ Press 'Esc' to exit the game.            ║\n" +
+                "║ Good luck!                               ║\n" +
+                "╚══════════════════════════════════════════╝");
             Console.ReadKey();
             ShowMenu();
         }
-        public static void Pause()
+
+        public static void ShowGameOver()
         {
-            var key = Console.ReadKey(intercept: true).Key;
-            if (key == ConsoleKey.P)
+            Console.Clear();
+            Thread.Sleep(1000);
+            Console.WriteLine(
+                "╔══════════════════════════════════════════╗\n" +
+                "║             === Game Over ===            ║\n" +
+                "╠══════════════════════════════════════════╣\n" +
+                "║ You have been defeated.                  ║\n" +
+                "║ ---> Press 'Enter' to restart the game.  ║\n" +
+                "║ ---> Press 'h' for the instructions.     ║\n" +
+                "║ ---> Press 'Esc' to exit.                ║\n" +
+                "╚══════════════════════════════════════════╝");
+
+
+            while (true)
             {
-                key = 0;
-                GameState = State.Pause;
-                Console.Clear();    
-                Console.WriteLine("Game is paused. \n\n" +
-                    "Press 'P' again to resume. ");
-            }
-            while (key != ConsoleKey.P)
-            {
-                key = Console.ReadKey(intercept: true).Key;
-            }
-            if (key == ConsoleKey.P)
-            {
-                GameState = State.Run;
+                if (Console.KeyAvailable)
+                {
+                    var key = Console.ReadKey(true).Key;
+                    switch (key)
+                    {
+                        case ConsoleKey.Enter:
+                            Game.Restart();
+                            return;
+                        case ConsoleKey.H:
+                            ShowInstructions();
+                            break;
+                        case ConsoleKey.Escape:
+                            Game.GameState = Game.State.Defeat;
+                            return;
+                        default:
+                            if (Console.KeyAvailable)
+                                key = Console.ReadKey(true).Key;
+                            continue;
+                    }
+                }
             }
         }
-
     }
 }

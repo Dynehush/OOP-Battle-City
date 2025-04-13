@@ -12,13 +12,13 @@ namespace SomeWeirdGame
         private static int _x = 2;
         private static int _y = 2;
         private static readonly string _playerFigure = "🛦";
-        private readonly string _playerBulletFigure = "🔴";
+        public static readonly string _playerBullet = "🔴";
         public List<Bullet> Bullets { get; } = new List<Bullet>();
 
         public new int X
         {
             get => _x;
-            private set
+            set
             {
                 if (value >= 0 && value < Field.WIDTH)
                 {
@@ -34,7 +34,7 @@ namespace SomeWeirdGame
         public new int Y
         {
             get => _y;
-            private set
+            set
             {
                 if (value >= 0 && value < Field.HEIGHT)
                 {
@@ -63,7 +63,8 @@ namespace SomeWeirdGame
         public override void Display() { Console.Write(_playerFigure); }
         public static void MovePlayer(Player _player, Field _field, Reward _reward, Enemy _enemy)
         {
-            var key = Console.ReadKey(intercept: true).Key;
+
+            var key = Console.ReadKey(true).Key;
             switch (key)
             {
                 case ConsoleKey.W: _player.Move(0, -1, _field); break;
@@ -78,6 +79,7 @@ namespace SomeWeirdGame
 
                 case ConsoleKey.Spacebar: _player.Shoot(_field, _reward, _enemy, _player); break;
             }
+
         }
 
         public void Move(int dx, int dy, Field _field)
@@ -102,35 +104,35 @@ namespace SomeWeirdGame
         {
             if (_player.X < _enemy.X && _player.Y < _enemy.Y)
             {
-                Bullets.Add(new Bullet(X, Y, 1, 1, _playerBulletFigure));
+                Bullets.Add(new Bullet(X, Y, 1, 1, _playerBullet));
             }
             else if (_player.X > _enemy.X && _player.Y < _enemy.Y)
             {
-                Bullets.Add(new Bullet(X, Y, -1, 1, _playerBulletFigure));
+                Bullets.Add(new Bullet(X, Y, -1, 1, _playerBullet));
             }
             else if (_player.X < _enemy.X && _player.Y > _enemy.Y)
             {
-                Bullets.Add(new Bullet(X, Y, 1, -1, _playerBulletFigure));
+                Bullets.Add(new Bullet(X, Y, 1, -1, _playerBullet));
             }
             else if (_player.X > _enemy.X && _player.Y > _enemy.Y)
             {
-                Bullets.Add(new Bullet(X, Y, -1, -1, _playerBulletFigure));
+                Bullets.Add(new Bullet(X, Y, -1, -1, _playerBullet));
             }
             else if (_player.X < _enemy.X && _player.Y == _enemy.Y)
             {
-                Bullets.Add(new Bullet(X, Y, 1, 0, _playerBulletFigure));
+                Bullets.Add(new Bullet(X, Y, 1, 0, _playerBullet));
             }
             else if (_player.X > _enemy.X && _player.Y == _enemy.Y)
             {
-                Bullets.Add(new Bullet(X, Y, -1, 0, _playerBulletFigure));
+                Bullets.Add(new Bullet(X, Y, -1, 0, _playerBullet));
             }
             else if (_player.X == _enemy.X && _player.Y > _enemy.Y)
             {
-                Bullets.Add(new Bullet(X, Y, 0, -1, _playerBulletFigure));
+                Bullets.Add(new Bullet(X, Y, 0, -1, _playerBullet));
             }
             else if (_player.X == _enemy.X && _player.Y < _enemy.Y)
             {
-                Bullets.Add(new Bullet(X, Y, 0, 1, _playerBulletFigure));
+                Bullets.Add(new Bullet(X, Y, 0, 1, _playerBullet));
             }
 
             Bullet.UpdateBullets(Bullets, _field, _reward);
@@ -141,7 +143,8 @@ namespace SomeWeirdGame
         {
             if (_player.X == _enemy.X && _player.Y == _enemy.Y)
             {
-                Game.GameState = Game.State.Defeat;
+                Game.GameState = Game.State.Pause;
+                Menu.ShowGameOver();
             }
         }
     }

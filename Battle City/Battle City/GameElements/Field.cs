@@ -1,8 +1,9 @@
 ﻿using System.Text;
+using static System.Formats.Asn1.AsnWriter;
 
 namespace SomeWeirdGame
 {
-    class Field : Game
+    class Field
     {
         public const int WIDTH = 40;
         public const int HEIGHT = 40;
@@ -17,6 +18,12 @@ namespace SomeWeirdGame
         {
             _level = level;
             GenerateField();
+        }
+
+        public BaseObject this[int x, int y]
+        {
+            get => FieldGrid[x, y];
+            set => FieldGrid[x, y] = value;
         }
 
         private void GenerateField()
@@ -34,7 +41,7 @@ namespace SomeWeirdGame
                     {
                         FieldGrid[i, j] = new BarrierObject(i, j, FIELD_BARRIER);
                     }
-                    else if (Random.NextDouble() < possibility)
+                    else if (Game.Random.NextDouble() < possibility)
                     {
                         FieldGrid[i, j] = new BarrierObject(i, j, FIELD_BARRIER);
                     }
@@ -46,7 +53,7 @@ namespace SomeWeirdGame
             }
         }
 
-        public override void Display()
+        public void DisplayField()
         {
             Console.Clear();
             StringBuilder sb = new StringBuilder();

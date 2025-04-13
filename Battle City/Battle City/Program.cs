@@ -7,7 +7,7 @@ namespace SomeWeirdGame
         static async Task Main(string[] args)
         {
             Game.ExecuteBasics();
-            Game.Start(null, null);
+            Game.RunGame();
         }
     }
 }

@@ -2,16 +2,18 @@
 
 namespace SomeWeirdGame
 {
-    class Bullet : Game
+    class Bullet : BaseObject
     {
         public int X { get; private set; }
         public int Y { get; private set; }
         private readonly string _bulletFigure;
-        //private readonly string _playerBulletFigure = "🔴";
         private readonly int _dx;
         private readonly int _dy;
 
-        public Bullet(int x, int y, int dx, int dy, string symbol)
+        public int OldX { get; private set; }
+        public int OldY { get; private set; }
+
+        public Bullet(int x, int y, int dx, int dy, string symbol) : base(x, y, symbol)
         {
             X = x;
             Y = y;
@@ -28,6 +30,8 @@ namespace SomeWeirdGame
 
         public override void Display()
         {
+            Console.SetCursorPosition(OldX * 2, OldY);
+            Console.Write("  ");
             Console.SetCursorPosition(X * 2, Y);
             Console.Write(_bulletFigure);
         }
@@ -46,38 +50,71 @@ namespace SomeWeirdGame
             for (int i = bullets.Count - 1; i >= 0; i--)
             {
                 var bullet = bullets[i];
-                bullet.Move();    
+                bullet.OldX = bullet.X;
+                bullet.OldY = bullet.Y;
+                bullet.Move();
 
-                if (bullet.X >= 0 && bullet.X < Field.WIDTH &&
-                    bullet.Y >= 0 && bullet.Y < Field.HEIGHT)
+                if (bullet.X < 0 || bullet.X >= Field.WIDTH || bullet.Y < 0 || bullet.Y >= Field.HEIGHT ||
+            !_field.IsWalkable(bullet.X, bullet.Y) || _reward.IsReward(bullet.X, bullet.Y))
                 {
-                    if (!_field.IsWalkable(bullet.X, bullet.Y) || _reward.IsReward(bullet.X, bullet.Y))
-                    {
-                        bullets.RemoveAt(i);
-                    }
-                    else
-                    {
-                        bullet.Display();
-                    }
+                    Console.SetCursorPosition(bullet.OldX * 2, bullet.OldY);
+                    Console.Write("  ");
+                    bullets.RemoveAt(i); 
                 }
                 else
                 {
-                    bullets.RemoveAt(i);
+                    bullet.Display(); 
                 }
             }
         }
 
-        public static void Hit(List<Bullet> bullets, Player _player)
+        public static void HitPlayer(List<Bullet> bullets, Player _player)
         {
-            foreach(var bullet in bullets)
+            foreach (var bullet in bullets)
             {
-                if (_player.X == bullet.X && _player.Y == bullet.Y)
+                if (bullet._bulletFigure == Enemy._enemyBullet)
                 {
-                    GameState = State.Defeat;
+                    if (_player.X == bullet.X && _player.Y == bullet.Y)
+                    {
+                        Game.GameState = Game.State.Pause;
+                        Menu.ShowGameOver();
+                    }
                 }
             }
         }
 
-        
+        public static void HitEnemy(List<Bullet> bullets, Enemy _enemy, Field _field)
+        {
+            for (int i = bullets.Count - 1; i >= 0; i--)
+            {
+                var bullet = bullets[i];
+                if (bullet._bulletFigure == Player._playerBullet)
+                {
+                    if (_enemy.X == bullet.X && _enemy.Y == bullet.Y)
+                    {
+                        
+                        Console.SetCursorPosition(_enemy.X * 2, _enemy.Y);
+                        Console.Write("  ");
+
+                        bullets.RemoveAt(i);
+
+                        _enemy.X = Game.Random.Next(0, Field.WIDTH);
+                        _enemy.Y = Game.Random.Next(0, Field.HEIGHT);
+
+                        while (!_field.IsWalkable(_enemy.X, _enemy.Y))
+                        {
+                            _enemy.X = Game.Random.Next(0, Field.WIDTH);
+                            _enemy.Y = Game.Random.Next(0, Field.HEIGHT);
+                        }
+
+                        _enemy.Display();
+                        break; 
+                    }
+                }
+            }
+        }
+
+
+
     }
 }

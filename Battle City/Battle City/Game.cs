@@ -10,10 +10,9 @@ using System.Timers;
 
 namespace SomeWeirdGame
 {
-    class Game
+    abstract class Game
     {
         public static readonly Random Random = new Random();
-        private static System.Timers.Timer _timer;
         private static int _level = 1;
 
         private static Field _field = new Field(_level);
@@ -21,75 +20,199 @@ namespace SomeWeirdGame
         private static Player _player = new Player(_field);
         private static Reward _reward = new Reward(5);
         private static int _score = 0;
+
+        private static Thread? _enemyMoveThread;
+        private static bool _enemyMoveActive = true;
+
         public enum State
         {
             Pause,
             Run,
             Win,
-            Defeat,
+            Defeat
         }
 
         public static State GameState;
-        static Game()
-        {
-            _timer = new System.Timers.Timer(1000);
-            _timer.AutoReset = true;
-            _timer.Enabled = true;
-            _timer.Elapsed += Start;
-        }
 
-        public virtual void Display() { }
         public static void ExecuteBasics()
         {
             Console.OutputEncoding = System.Text.Encoding.UTF8;
             Console.CursorVisible = false;
-            Console.SetWindowSize(Field.WIDTH + 10, Field.HEIGHT + 10);
-            Console.SetBufferSize(Field.WIDTH + 10, Field.HEIGHT + 10);
             Menu.ShowMenu();
+
             _reward.SetRewards(_score, _field, _player);
+            GameState = State.Run;
+
+            StartEnemyMovement(); 
+            StartEnemyBulletMovement();
+            RunGame();            
         }
-        public static void Start(object? sender, ElapsedEventArgs e)
+        private static readonly object consoleLock = new object();
+        private static void StartEnemyMovement()
+        {
+            _enemyMoveActive = true;
+
+            _enemyMoveThread = new Thread(() =>
+            {
+                while (_enemyMoveActive && GameState == State.Run)
+                {
+                    
+
+                    lock (consoleLock)
+                    {
+                        Player.CheckCollision(_player, _enemy);
+                        _enemy.IsOverlapping(_enemy);
+
+                        _enemy.Move(_field, _player);
+                        _enemy.Shoot(_field, _player, _enemy);
+
+                        Console.SetCursorPosition(_enemy.OldX * 2, _enemy.OldY);
+                        Console.Write("  ");
+
+                        Console.SetCursorPosition(_enemy.X * 2, _enemy.Y);
+                        _enemy.Display();
+                    }
+
+                    Thread.Sleep(200);
+                }
+
+               
+            });
+
+            _enemyMoveThread.IsBackground = true;
+            _enemyMoveThread.Start();
+        }
+
+        private static void RenderField()
+        {
+            Console.Clear();  
+
+            _field.DisplayField();
+
+            Console.SetCursorPosition(_player.X * 2, _player.Y);
+            _player.Display();
+
+            Console.SetCursorPosition(_enemy.X * 2, _enemy.Y);
+            _enemy.Display();
+
+            Console.SetCursorPosition(0, Field.HEIGHT + 1);
+            Console.WriteLine("Collect all the stars to win!");
+            Console.WriteLine("And avoid enemy bullets if you want to survive.");
+            Console.WriteLine($"\nLevel: {_level}");
+            Console.WriteLine($"\nScore: {_score}");
+        }
+
+        private static Thread? _enemyBulletThread;
+        private static bool _enemyBulletActive = true;
+        private static void StartEnemyBulletMovement()
+        {
+            _enemyBulletActive = true;
+
+            _enemyBulletThread = new Thread(() =>
+            {
+                while (_enemyBulletActive && GameState == State.Run)
+                {
+                    lock (consoleLock)
+                    {
+                        Bullet.UpdateBullets(_player.Bullets, _field, _reward);
+                        Bullet.UpdateBullets(_enemy.Bullets, _field, _reward);
+                        Bullet.HitPlayer(_enemy.Bullets, _player);
+                        Bullet.HitEnemy(_player.Bullets, _enemy, _field);
+                    }
+
+                    Thread.Sleep(100);
+                }
+            });
+
+            _enemyBulletThread.IsBackground = true;
+            _enemyBulletThread.Start();
+        }
+
+        public static void Restart()
+        {
+            Console.Clear();
+            _enemyMoveActive = false;
+            _enemyMoveThread?.Join();
+
+            _score = 0;
+            _level = 1;
+            _field = new Field(_level);
+            _player.X = 2; _player.Y = 2;
+            _player = new Player(_field);
+            _enemy.X = Field.WIDTH - 4; _enemy.Y = Field.HEIGHT - 4;
+            _enemy = new Enemy(_field);
+            _reward = new Reward(5);
+            _reward.SetRewards(_score, _field, _player);
+            GameState = State.Run;
+            StartEnemyMovement();
+            StartEnemyBulletMovement();
+
+            Thread gameThread = new Thread(RunGame);
+            gameThread.Start();
+
+            
+        }
+        //private static void RenderField()
+        //{
+        //    _field.DisplayField();
+
+        //    Console.SetCursorPosition(_player.X * 2, _player.Y);
+        //    _player.Display();
+
+        //    Console.SetCursorPosition(_enemy.X * 2, _enemy.Y);
+        //    _enemy.Display();
+
+        //    Console.SetCursorPosition(0, Field.HEIGHT + 1);
+        //    Console.WriteLine("Collect all the stars to win!");
+        //    Console.WriteLine("And avoid enemy bullets if you want to survive.");
+        //    Console.WriteLine($"\nLevel: {_level}");
+        //    Console.WriteLine($"\nScore: {_score}");
+        //}
+
+        //private static void Render()
+        //{
+        //    _enemyActive = true;
+
+        //    _gameLoopActive = true;
+        //    _gameLoopThread = new Thread(() =>
+        //    {
+        //        while (_gameLoopActive && GameState == State.Run)
+        //        {
+        //            RenderField();
+        //            Thread.Sleep(200); 
+        //        }
+        //    });
+        //    _gameLoopThread.Start();
+
+        //    _enemyMoveThread = new Thread(() =>
+        //    {
+        //        while (_enemyActive && GameState == State.Run)
+        //        {
+        //            _enemy.Move(_field, _player);
+        //            Thread.Sleep(300); 
+        //        }
+        //    });
+        //    _enemyMoveThread.Start();
+
+        //    _enemyShootThread = new Thread(() =>
+        //    {
+        //        while (_enemyActive && GameState == State.Run)
+        //        {
+        //            _enemy.Shoot(_field, _player, _enemy);
+        //            Thread.Sleep(100);
+        //        }
+        //    });
+        //    _enemyShootThread.Start();
+
+        //}
+        public static void RunGame()
         {
             while (GameState == State.Run)
             {
-                //Task.Run(() => Menu.Pause());
-                _field.Display();
-                Console.SetCursorPosition(_enemy.X * 2, _enemy.Y);
-                Console.Write("  ");
-                _enemy.Move(_field, _player);
-                Console.SetCursorPosition(_enemy.X * 2, _enemy.Y);
-                _enemy.Display();
+                RenderField();
 
                 _reward.CheckRewards(_score, _field);
-
                 _score += _reward.GetReward(_player.X, _player.Y, _field);
-                /*
-                if (_random.Next(0, 101) == 15)
-                {
-                    _reward.CheckRewards(_score);
-                    _reward.SetRewards(_score, _player);
-                }
-                */
-                Console.SetCursorPosition(0, Field.HEIGHT + 1);
-                Console.WriteLine("Collect all the stars to win!");
-                Console.WriteLine("And avoid enemy bullets if you want to survive.");
-                Console.WriteLine($"\nLevel: {_level}");
-
-                Console.WriteLine($"\nScore: {_score}");
-
-                Bullet.UpdateBullets(_player.Bullets, _field, _reward);
-                Bullet.UpdateBullets(_enemy.Bullets, _field, _reward);
-                Bullet.Hit(_enemy.Bullets, _player);
-                Player.CheckCollision(_player, _enemy);
-                _enemy.IsOverlapping(_enemy);
-                _enemy.Shoot(_field, _player, _enemy);
-
-                Console.SetCursorPosition(_player.X * 2, _player.Y);
-                _player.Display();
-
-                Console.SetCursorPosition(_enemy.X * 2, _enemy.Y);
-                _enemy.Display();
-
 
                 if (_score == _reward.NumberOfRewards)
                 {
@@ -102,6 +225,7 @@ namespace SomeWeirdGame
                         _level++;
                         _field = new Field(_level);
                         _player = new Player(_field);
+                        _enemy = new Enemy(_field);
                         _reward = new Reward(5);
                         _reward.SetRewards(0, _field, _player);
                         _score = 0;
@@ -113,15 +237,36 @@ namespace SomeWeirdGame
                 if (GameState == State.Win)
                 {
                     Console.Clear();
-                    Console.WriteLine("Congratulations! You have collected all the rewards! Exiting...");
+                    Console.WriteLine(
+                        "╔══════════════════════════════════════════╗\n" +
+                        "║        === Congratulations! ===          ║\n" +
+                        "╠══════════════════════════════════════════╣\n" +
+                        "║ You have collected all the rewards!      ║\n" +
+                        "║ Exiting...                               ║\n" +
+                        "╚══════════════════════════════════════════╝");
                     Environment.Exit(1);
                 }
 
-                if (GameState == State.Defeat) {
+                if (GameState == State.Defeat)
+                {
+                    _enemyMoveActive = false;
+                    _enemyMoveThread?.Join();
+
                     Console.Clear();
-                    Console.WriteLine("*** GAME OVER ***");
-                    Environment.Exit(1);
+                    Menu.ShowGameOver();
+                    return;
                 }
+
+                if (GameState == State.Pause)
+                {
+                    _enemyMoveActive = false;
+                    _enemyMoveThread?.Join();
+                    Console.Clear();
+                    Menu.ShowGameOver();
+                    return;
+                }
+
+                Thread.Sleep(10); 
             }
         }
     }
