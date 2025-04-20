@@ -152,59 +152,6 @@ namespace Battle_City
 
             
         }
-        //private static void RenderField()
-        //{
-        //    _field.DisplayField();
-
-        //    Console.SetCursorPosition(_player.X * 2, _player.Y);
-        //    _player.Display();
-
-        //    Console.SetCursorPosition(_enemy.X * 2, _enemy.Y);
-        //    _enemy.Display();
-
-        //    Console.SetCursorPosition(0, Field.HEIGHT + 1);
-        //    Console.WriteLine("Collect all the stars to win!");
-        //    Console.WriteLine("And avoid enemy bullets if you want to survive.");
-        //    Console.WriteLine($"\nLevel: {_level}");
-        //    Console.WriteLine($"\nScore: {_score}");
-        //}
-
-        //private static void Render()
-        //{
-        //    _enemyActive = true;
-
-        //    _gameLoopActive = true;
-        //    _gameLoopThread = new Thread(() =>
-        //    {
-        //        while (_gameLoopActive && GameState == State.Run)
-        //        {
-        //            RenderField();
-        //            Thread.Sleep(200); 
-        //        }
-        //    });
-        //    _gameLoopThread.Start();
-
-        //    _enemyMoveThread = new Thread(() =>
-        //    {
-        //        while (_enemyActive && GameState == State.Run)
-        //        {
-        //            _enemy.Move(_field, _player);
-        //            Thread.Sleep(300); 
-        //        }
-        //    });
-        //    _enemyMoveThread.Start();
-
-        //    _enemyShootThread = new Thread(() =>
-        //    {
-        //        while (_enemyActive && GameState == State.Run)
-        //        {
-        //            _enemy.Shoot(_field, _player, _enemy);
-        //            Thread.Sleep(100);
-        //        }
-        //    });
-        //    _enemyShootThread.Start();
-
-        //}
         public static void RunGame()
         {
             while (GameState == State.Run)
