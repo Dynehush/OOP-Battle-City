@@ -1,0 +1,42 @@
+C:\Uni 2 semester\OOP\projects\Battle City\Battle City\obj\Debug\net8.0\Battle City.GeneratedMSBuildEditorConfig.editorconfig
+C:\Uni 2 semester\OOP\projects\Battle City\Battle City\obj\Debug\net8.0\Battle City.AssemblyInfoInputs.cache
+C:\Uni 2 semester\OOP\projects\Battle City\Battle City\obj\Debug\net8.0\Battle City.AssemblyInfo.cs
+C:\Uni 2 semester\OOP\projects\Battle City\Battle City\obj\Debug\net8.0\Battle City.csproj.CoreCompileInputs.cache
+C:\Uni 2 semester\OOP\projects\Battle City\Battle City\bin\Debug\net8.0\Battle City.exe
+C:\Uni 2 semester\OOP\projects\Battle City\Battle City\bin\Debug\net8.0\Battle City.deps.json
+C:\Uni 2 semester\OOP\projects\Battle City\Battle City\bin\Debug\net8.0\Battle City.runtimeconfig.json
+C:\Uni 2 semester\OOP\projects\Battle City\Battle City\bin\Debug\net8.0\Battle City.dll
+C:\Uni 2 semester\OOP\projects\Battle City\Battle City\bin\Debug\net8.0\Battle City.pdb
+C:\Uni 2 semester\OOP\projects\Battle City\Battle City\obj\Debug\net8.0\Battle City.dll
+C:\Uni 2 semester\OOP\projects\Battle City\Battle City\obj\Debug\net8.0\refint\Battle City.dll
+C:\Uni 2 semester\OOP\projects\Battle City\Battle City\obj\Debug\net8.0\Battle City.pdb
+C:\Uni 2 semester\OOP\projects\Battle City\Battle City\obj\Debug\net8.0\Battle City.genruntimeconfig.cache
+C:\Uni 2 semester\OOP\projects\Battle City\Battle City\obj\Debug\net8.0\ref\Battle City.dll
+C:\Uni 2 semester\OOP\projects\Battle City Beta 1.2\Battle City\bin\Debug\net8.0\Battle City.exe
+C:\Uni 2 semester\OOP\projects\Battle City Beta 1.2\Battle City\bin\Debug\net8.0\Battle City.deps.json
+C:\Uni 2 semester\OOP\projects\Battle City Beta 1.2\Battle City\bin\Debug\net8.0\Battle City.runtimeconfig.json
+C:\Uni 2 semester\OOP\projects\Battle City Beta 1.2\Battle City\bin\Debug\net8.0\Battle City.dll
+C:\Uni 2 semester\OOP\projects\Battle City Beta 1.2\Battle City\bin\Debug\net8.0\Battle City.pdb
+C:\Uni 2 semester\OOP\projects\Battle City Beta 1.2\Battle City\obj\Debug\net8.0\Battle City.GeneratedMSBuildEditorConfig.editorconfig
+C:\Uni 2 semester\OOP\projects\Battle City Beta 1.2\Battle City\obj\Debug\net8.0\Battle City.AssemblyInfoInputs.cache
+C:\Uni 2 semester\OOP\projects\Battle City Beta 1.2\Battle City\obj\Debug\net8.0\Battle City.AssemblyInfo.cs
+C:\Uni 2 semester\OOP\projects\Battle City Beta 1.2\Battle City\obj\Debug\net8.0\Battle City.csproj.CoreCompileInputs.cache
+C:\Uni 2 semester\OOP\projects\Battle City Beta 1.2\Battle City\obj\Debug\net8.0\Battle City.dll
+C:\Uni 2 semester\OOP\projects\Battle City Beta 1.2\Battle City\obj\Debug\net8.0\refint\Battle City.dll
+C:\Uni 2 semester\OOP\projects\Battle City Beta 1.2\Battle City\obj\Debug\net8.0\Battle City.pdb
+C:\Uni 2 semester\OOP\projects\Battle City Beta 1.2\Battle City\obj\Debug\net8.0\Battle City.genruntimeconfig.cache
+C:\Uni 2 semester\OOP\projects\Battle City Beta 1.2\Battle City\obj\Debug\net8.0\ref\Battle City.dll
+C:\Uni 2 semester\OOP\projects\Battle City Beta 1.3\Battle City\bin\Debug\net8.0\Battle City.exe
+C:\Uni 2 semester\OOP\projects\Battle City Beta 1.3\Battle City\bin\Debug\net8.0\Battle City.deps.json
+C:\Uni 2 semester\OOP\projects\Battle City Beta 1.3\Battle City\bin\Debug\net8.0\Battle City.runtimeconfig.json
+C:\Uni 2 semester\OOP\projects\Battle City Beta 1.3\Battle City\bin\Debug\net8.0\Battle City.dll
+C:\Uni 2 semester\OOP\projects\Battle City Beta 1.3\Battle City\bin\Debug\net8.0\Battle City.pdb
+C:\Uni 2 semester\OOP\projects\Battle City Beta 1.3\Battle City\obj\Debug\net8.0\Battle City.GeneratedMSBuildEditorConfig.editorconfig
+C:\Uni 2 semester\OOP\projects\Battle City Beta 1.3\Battle City\obj\Debug\net8.0\Battle City.AssemblyInfoInputs.cache
+C:\Uni 2 semester\OOP\projects\Battle City Beta 1.3\Battle City\obj\Debug\net8.0\Battle City.AssemblyInfo.cs
+C:\Uni 2 semester\OOP\projects\Battle City Beta 1.3\Battle City\obj\Debug\net8.0\Battle City.csproj.CoreCompileInputs.cache
+C:\Uni 2 semester\OOP\projects\Battle City Beta 1.3\Battle City\obj\Debug\net8.0\Battle City.dll
+C:\Uni 2 semester\OOP\projects\Battle City Beta 1.3\Battle City\obj\Debug\net8.0\refint\Battle City.dll
+C:\Uni 2 semester\OOP\projects\Battle City Beta 1.3\Battle City\obj\Debug\net8.0\Battle City.pdb
+C:\Uni 2 semester\OOP\projects\Battle City Beta 1.3\Battle City\obj\Debug\net8.0\Battle City.genruntimeconfig.cache
+C:\Uni 2 semester\OOP\projects\Battle City Beta 1.3\Battle City\obj\Debug\net8.0\ref\Battle City.dll
