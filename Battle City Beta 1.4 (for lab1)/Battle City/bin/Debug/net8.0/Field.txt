@@ -1,0 +1,20 @@
+{
+  "Level": 1,
+  "Score": 0,
+  "PlayerPosition": {
+    "X": 4,
+    "Y": 4
+  },
+  "EnemyPosition": {
+    "X": 36,
+    "Y": 33
+  },
+  "Rewards": [
+    {},
+    {},
+    {},
+    {},
+    {}
+  ],
+  "GameState": "Save"
+}
