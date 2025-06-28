@@ -1,0 +1,21 @@
+C:\Uni 2 semester\OOP\projects\Battle City GUI 1.2\Battle City\Battle City\obj\Debug\net8.0-windows\Battle_City.DefeatForm.resources
+C:\Uni 2 semester\OOP\projects\Battle City GUI 1.2\Battle City\Battle City\obj\Debug\net8.0-windows\Battle_City.Windows.EscapeForm.resources
+C:\Uni 2 semester\OOP\projects\Battle City GUI 1.2\Battle City\Battle City\obj\Debug\net8.0-windows\Battle_City.GameForm.resources
+C:\Uni 2 semester\OOP\projects\Battle City GUI 1.2\Battle City\Battle City\obj\Debug\net8.0-windows\Battle_City.InstructionsForm.resources
+C:\Uni 2 semester\OOP\projects\Battle City GUI 1.2\Battle City\Battle City\obj\Debug\net8.0-windows\Battle_City.MainMenu.resources
+C:\Uni 2 semester\OOP\projects\Battle City GUI 1.2\Battle City\Battle City\obj\Debug\net8.0-windows\Battle_City.WinForm.resources
+C:\Uni 2 semester\OOP\projects\Battle City GUI 1.2\Battle City\Battle City\obj\Debug\net8.0-windows\Battle City.csproj.GenerateResource.cache
+C:\Uni 2 semester\OOP\projects\Battle City GUI 1.2\Battle City\Battle City\obj\Debug\net8.0-windows\Battle City.GeneratedMSBuildEditorConfig.editorconfig
+C:\Uni 2 semester\OOP\projects\Battle City GUI 1.2\Battle City\Battle City\obj\Debug\net8.0-windows\Battle City.AssemblyInfoInputs.cache
+C:\Uni 2 semester\OOP\projects\Battle City GUI 1.2\Battle City\Battle City\obj\Debug\net8.0-windows\Battle City.AssemblyInfo.cs
+C:\Uni 2 semester\OOP\projects\Battle City GUI 1.2\Battle City\Battle City\obj\Debug\net8.0-windows\Battle City.csproj.CoreCompileInputs.cache
+C:\Uni 2 semester\OOP\projects\Battle City GUI 1.2\Battle City\Battle City\bin\Debug\net8.0-windows\Battle City.exe
+C:\Uni 2 semester\OOP\projects\Battle City GUI 1.2\Battle City\Battle City\bin\Debug\net8.0-windows\Battle City.deps.json
+C:\Uni 2 semester\OOP\projects\Battle City GUI 1.2\Battle City\Battle City\bin\Debug\net8.0-windows\Battle City.runtimeconfig.json
+C:\Uni 2 semester\OOP\projects\Battle City GUI 1.2\Battle City\Battle City\bin\Debug\net8.0-windows\Battle City.dll
+C:\Uni 2 semester\OOP\projects\Battle City GUI 1.2\Battle City\Battle City\bin\Debug\net8.0-windows\Battle City.pdb
+C:\Uni 2 semester\OOP\projects\Battle City GUI 1.2\Battle City\Battle City\obj\Debug\net8.0-windows\Battle City.dll
+C:\Uni 2 semester\OOP\projects\Battle City GUI 1.2\Battle City\Battle City\obj\Debug\net8.0-windows\refint\Battle City.dll
+C:\Uni 2 semester\OOP\projects\Battle City GUI 1.2\Battle City\Battle City\obj\Debug\net8.0-windows\Battle City.pdb
+C:\Uni 2 semester\OOP\projects\Battle City GUI 1.2\Battle City\Battle City\obj\Debug\net8.0-windows\Battle City.genruntimeconfig.cache
+C:\Uni 2 semester\OOP\projects\Battle City GUI 1.2\Battle City\Battle City\obj\Debug\net8.0-windows\ref\Battle City.dll
